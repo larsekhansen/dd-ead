@@ -1,0 +1,244 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Hva er KI Norge? | Kunstig intelligens i offentlig sektor"
+  description="Lær mer om KI Norge og hvordan vi jobber med kunstig intelligens i offentlig sektor">
+  
+  <div class="container">
+    <header class="page-header">
+      <h1>Hva er KI Norge?</h1>
+      <p class="lead">KI Norge er Digitaliseringsdirektoratets initiativ for å fremme ansvarlig bruk av kunstig intelligens i offentlig sektor.</p>
+    </header>
+
+    <section class="content-section">
+      <h2>Vårt oppdrag</h2>
+      <p>Som en del av Digitaliseringsdirektoratet (Digdir) har vi et særskilt ansvar for å:</p>
+      <ul>
+        <li>Veilede offentlige virksomheter i bruk av KI</li>
+        <li>Utvikle retningslinjer og rammeverk for ansvarlig KI</li>
+        <li>Fremme innovasjon og digitalisering i offentlig sektor</li>
+        <li>Sikre at KI-løsninger utvikles med fokus på etikk og personvern</li>
+      </ul>
+    </section>
+
+    <section class="content-section">
+      <h2>Nasjonal strategi for kunstig intelligens</h2>
+      <p>Norge har en ambisiøs strategi for kunstig intelligens som skal sikre at vi utnytter mulighetene KI gir på en ansvarlig måte. Strategien fokuserer på:</p>
+      
+      <div class="strategy-grid">
+        <div class="strategy-card">
+          <h3>Kompetanse</h3>
+          <p>Øke kunnskapen om KI i offentlig sektor og samfunnet generelt</p>
+        </div>
+        <div class="strategy-card">
+          <h3>Infrastruktur</h3>
+          <p>Bygge robust digital infrastruktur for KI-utvikling</p>
+        </div>
+        <div class="strategy-card">
+          <h3>Etikk</h3>
+          <p>Sikre etisk og ansvarlig bruk av KI</p>
+        </div>
+        <div class="strategy-card">
+          <h3>Innovasjon</h3>
+          <p>Fremme innovasjon og verdiskaping gjennom KI</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2>Hvordan vi jobber</h2>
+      <div class="work-methods">
+        <div class="method">
+          <h3>Samarbeid</h3>
+          <p>Vi samarbeider tett med offentlige virksomheter, akademia og privat sektor for å dele kunnskap og erfaringer.</p>
+        </div>
+        <div class="method">
+          <h3>Veiledning</h3>
+          <p>Vi tilbyr veiledning og støtte til offentlige virksomheter som ønsker å ta i bruk KI.</p>
+        </div>
+        <div class="method">
+          <h3>Kunnskapsdeling</h3>
+          <p>Vi dokumenterer og deler beste praksis og erfaringer fra KI-prosjekter i offentlig sektor.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section cta-box">
+      <h2>Vil du vite mer?</h2>
+      <p>Ta kontakt med oss for å lære mer om hvordan vi kan hjelpe din organisasjon med KI.</p>
+      <div class="cta-buttons">
+        <a href="/ressurser" class="primary-button">Utforsk våre ressurser</a>
+        <a href="/kontakt" class="secondary-button">Kontakt oss</a>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .page-header h1 {
+    font-size: 3rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+  }
+
+  .lead {
+    font-size: 1.5rem;
+    color: var(--gray-medium);
+    line-height: 1.6;
+  }
+
+  .content-section {
+    margin-bottom: 4rem;
+  }
+
+  .content-section h2 {
+    font-size: 2rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+  }
+
+  .content-section p {
+    color: var(--text-color);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+  }
+
+  ul li {
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  ul li::before {
+    content: "•";
+    color: var(--primary-color);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+  }
+
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .strategy-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .strategy-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+  }
+
+  .work-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .method {
+    background: var(--gray-light);
+    padding: 2rem;
+    border-radius: 0.5rem;
+  }
+
+  .method h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+  }
+
+  .cta-box {
+    background: var(--gray-light);
+    padding: 3rem;
+    border-radius: 0.5rem;
+    text-align: center;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .primary-button {
+    display: inline-block;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.875rem 1.75rem;
+    border-radius: 0.375rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s;
+  }
+
+  .secondary-button {
+    display: inline-block;
+    background: transparent;
+    color: var(--primary-color);
+    padding: 0.875rem 1.75rem;
+    border-radius: 0.375rem;
+    text-decoration: none;
+    font-weight: 500;
+    border: 2px solid var(--primary-color);
+    transition: background-color 0.2s;
+  }
+
+  .primary-button:hover {
+    background: var(--secondary-color);
+  }
+
+  .secondary-button:hover {
+    background: var(--gray-light);
+  }
+
+  @media (max-width: 768px) {
+    .page-header h1 {
+      font-size: 2.5rem;
+    }
+
+    .lead {
+      font-size: 1.25rem;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+    }
+
+    .strategy-grid,
+    .work-methods {
+      grid-template-columns: 1fr;
+    }
+  }
+</style> 

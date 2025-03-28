@@ -1,0 +1,148 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.jsx';
+import { Card, CardContent, Heading, Paragraph, Button } from '@digdir/designsystemet-react';
+import '../styles/hero.css';
+import { getCollection } from 'astro:content';
+
+// Get latest blog posts
+const allPosts = await getCollection('blogg');
+const latestPosts = allPosts
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
+---
+
+<Layout 
+  title="KI Norge - Kunstig intelligens i offentlig sektor"
+  description="KI Norge er en veiviser til informasjon og tjenester om kunstig intelligens for offentlig sektor.">
+  
+  <Hero
+    client:load
+    title="KI Norge"
+    description="En veiviser til informasjon og tjenester om kunstig intelligens for offentlig sektor."
+    primaryCta={{ text: "Kom i gang", href: "/hva-er-ki-norge" }}
+    secondaryCta={{ text: "Les mer", href: "/om-oss" }}
+    image={{ 
+      src: "/images/ai-illustration.svg", 
+      alt: "Illustrasjon av kunstig intelligens" 
+    }}
+  />
+
+  <div class="container">
+    <section class="section">
+      <Heading level={2} size="large" spacing className="section-title">
+        Hvordan kan vi hjelpe deg?
+      </Heading>
+      
+      <div class="services-grid">
+        <Card>
+          <CardContent>
+            <Heading level={3} size="medium" spacing>Veiledning</Heading>
+            <Paragraph spacing>
+              Få hjelp til å komme i gang med KI i din virksomhet gjennom veiledning, kurs og verktøy.
+            </Paragraph>
+            <Button variant="tertiary" href="/tjenester/veiledning">Les mer</Button>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardContent>
+            <Heading level={3} size="medium" spacing>Verktøy</Heading>
+            <Paragraph spacing>
+              Finn verktøy og ressurser for å implementere KI-løsninger på en ansvarlig og effektiv måte.
+            </Paragraph>
+            <Button variant="tertiary" href="/tjenester/verktoy">Les mer</Button>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardContent>
+            <Heading level={3} size="medium" spacing>Nettverk</Heading>
+            <Paragraph spacing>
+              Bli en del av KI-nettverket for offentlig sektor og del erfaringer med andre.
+            </Paragraph>
+            <Button variant="tertiary" href="/tjenester/nettverk">Les mer</Button>
+          </CardContent>
+        </Card>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <Heading level={2} size="large" spacing className="section-title">
+          Siste nytt
+        </Heading>
+        <Button variant="tertiary" href="/blogg">Se alle innlegg</Button>
+      </div>
+      
+      <div class="blog-grid">
+        {latestPosts.map(post => (
+          <div class="blog-card">
+            <Card>
+              <CardContent>
+                <span class="blog-date">{post.data.pubDate.toLocaleDateString('nb-NO')}</span>
+                <Heading level={3} size="small" spacing>
+                  {post.data.title}
+                </Heading>
+                <Paragraph spacing>
+                  {post.data.description}
+                </Paragraph>
+                <Button variant="tertiary" href={`/blogg/${post.slug}`}>Les mer</Button>
+              </CardContent>
+            </Card>
+          </div>
+        ))}
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .section {
+    margin-bottom: 4rem;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .section-title {
+    margin-bottom: 2rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .blog-date {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--digdir-tekst-subtil);
+    font-size: 0.875rem;
+  }
+
+  @media (max-width: 768px) {
+    .section-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+  }
+</style> 

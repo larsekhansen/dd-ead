@@ -1,0 +1,256 @@
+---
+import DigdirHeader from '../components/DigdirHeader.jsx';
+import DigdirFooter from '../components/DigdirFooter.jsx';
+import '../styles/footer.css';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = 'KI Norge - Offentlig sektor i bevegelse' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="nb">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<link
+			rel="stylesheet"
+			href="https://altinncdn.no/fonts/inter/v4.1/inter.css"
+			integrity="sha384-OcHzc/By/OPw9uJREawUCjP2inbOGKtKb4A/I2iXxmknUfog2H8Adx71tWVZRscD"
+			crossorigin="anonymous"
+		/>
+		<title>{title}</title>
+	</head>
+	<body>
+		<DigdirHeader client:load />
+		<main>
+			<slot />
+		</main>
+		<DigdirFooter />
+	</body>
+</html>
+
+<style is:global>
+	@import '@digdir/designsystemet-css';
+	@import '@digdir/designsystemet-theme';
+
+	:root {
+		--primary-color: #1E4C88;
+		--primary-dark: #0E2E57;
+		--secondary-color: #00CD81;
+		--text-color: #1A1A1A;
+		--gray-light: #F2F2F2;
+		--gray-medium: #666666;
+		--gray-dark: #333333;
+		--accent-color: #FF9500;
+		--accent-light: #FFB74D;
+		--accent-dark: #E68500;
+	}
+
+	html {
+		font-family: 'Inter', sans-serif;
+		font-feature-settings: 'cv05' 1; /* Enable lowercase l with tail */
+		background: var(--gray-light);
+		color: var(--text-color);
+	}
+
+	body {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+	main {
+		min-height: 70vh;
+	}
+
+	/* Reset some default styles */
+	h1, h2, h3, h4, h5, h6, p {
+		margin: 0;
+		padding: 0;
+	}
+
+	a {
+		color: var(--primary-color);
+		text-decoration: none;
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
+
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+
+	.site-header {
+		background: white;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+		position: sticky;
+		top: 0;
+		z-index: 100;
+	}
+
+	.main-nav {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 1rem;
+	}
+
+	.nav-container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: 80px;
+	}
+
+	.logo a {
+		text-decoration: none;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.logo-text {
+		font-size: 1.5rem;
+		font-weight: bold;
+		color: var(--primary-color);
+	}
+
+	.logo-sub {
+		font-size: 0.875rem;
+		color: var(--gray-medium);
+	}
+
+	.nav-links {
+		display: flex;
+		gap: 2rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.nav-links a {
+		color: var(--text-color);
+		text-decoration: none;
+		font-weight: 500;
+		padding: 0.5rem 0;
+		border-bottom: 2px solid transparent;
+		transition: border-color 0.2s;
+	}
+
+	.nav-links a:hover {
+		border-bottom-color: var(--primary-color);
+	}
+
+	.mobile-menu-button {
+		display: none;
+	}
+
+	.site-footer {
+		background: var(--gray-light);
+		padding: 4rem 0 2rem;
+		margin-top: 4rem;
+	}
+
+	.footer-container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 1rem;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 2rem;
+	}
+
+	.footer-section h2 {
+		font-size: 1.25rem;
+		margin-bottom: 1rem;
+		color: var(--primary-color);
+	}
+
+	.footer-section p {
+		margin: 0.5rem 0;
+		color: var(--gray-medium);
+	}
+
+	.footer-section a {
+		color: var(--primary-color);
+		text-decoration: none;
+	}
+
+	.footer-section a:hover {
+		text-decoration: underline;
+	}
+
+	.social-links {
+		display: flex;
+		gap: 1rem;
+	}
+
+	.footer-bottom {
+		max-width: 1200px;
+		margin: 2rem auto 0;
+		padding: 2rem 1rem 0;
+		border-top: 1px solid #e5e7eb;
+		text-align: center;
+		color: var(--gray-medium);
+		font-size: 0.875rem;
+	}
+
+	@media (max-width: 768px) {
+		.nav-links {
+			display: none;
+		}
+
+		.mobile-menu-button {
+			display: block;
+			background: none;
+			border: none;
+			padding: 0.5rem;
+			cursor: pointer;
+		}
+
+		.hamburger {
+			display: block;
+			width: 24px;
+			height: 2px;
+			background: var(--text-color);
+			position: relative;
+		}
+
+		.hamburger::before,
+		.hamburger::after {
+			content: '';
+			position: absolute;
+			width: 24px;
+			height: 2px;
+			background: var(--text-color);
+			left: 0;
+		}
+
+		.hamburger::before {
+			top: -6px;
+		}
+
+		.hamburger::after {
+			bottom: -6px;
+		}
+	}
+</style>
+
+<script>
+	// Mobile menu functionality
+	const mobileMenuButton = document.querySelector('.mobile-menu-button');
+	const navLinks = document.querySelector('.nav-links');
+
+	mobileMenuButton?.addEventListener('click', () => {
+		navLinks?.classList.toggle('show');
+	});
+</script> 

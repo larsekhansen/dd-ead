@@ -1,0 +1,12 @@
+{
+  "tasks": {
+    "dev": "deno run --allow-sys --allow-ffi --allow-net --allow-read --allow-env --allow-write --allow-run npm:astro dev",
+    "sta": "deno run --allow-sys --allow-ffi --allow-net --allow-read --allow-env --allow-write --allow-run npm:astro preview",
+    "bld": "deno run --allow-sys --allow-ffi --allow-net --allow-read --allow-env --allow-write --allow-run npm:astro build"
+  },
+  "imports": {
+    "astro": "npm:astro@latest",
+    "@astrojs/deno": "npm:@astrojs/deno@latest"
+  },
+  "nodeModulesDir": "auto"
+}

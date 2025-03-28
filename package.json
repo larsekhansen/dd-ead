@@ -1,0 +1,35 @@
+{
+  "name": "ki-norge",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "deno run --allow-net --allow-read --allow-env --allow-write --allow-run --allow-ffi npm:astro dev",
+    "start": "deno run --allow-net --allow-read --allow-env --allow-write --allow-run --allow-ffi npm:astro dev",
+    "build": "astro build",
+    "preview": "deno run --allow-net --allow-read --allow-env --allow-write --allow-run --allow-ffi ./dist/server/entry.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint . --ext js,jsx,ts,tsx,astro",
+    "lint:fix": "eslint . --ext js,jsx,ts,tsx,astro --fix"
+  },
+  "dependencies": {
+    "@astrojs/deno": "^5.0.1",
+    "@astrojs/react": "^3.0.10",
+    "@digdir/designsystemet-css": "^0.20.0",
+    "@digdir/designsystemet-react": "^0.50.0",
+    "@digdir/designsystemet-theme": "^0.14.0",
+    "astro": "^5.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sharp": "^0.33.0",
+    "tinymce": "^6.8.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.0.2",
+    "@typescript-eslint/parser": "^7.0.2",
+    "eslint": "^8.56.0",
+    "eslint-plugin-astro": "^0.31.4",
+    "prettier": "^3.2.5",
+    "typescript": "^5.3.3"
+  }
+}

@@ -1,0 +1,216 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blogg');
+posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+---
+
+<Layout 
+  title="Blogginnlegg | Admin KI Norge"
+  description="Administrer blogginnlegg">
+  
+  <div class="container">
+    <header class="page-header">
+      <div class="header-content">
+        <div>
+          <h1>Blogginnlegg</h1>
+          <p class="lead">Administrer blogginnlegg og artikler</p>
+        </div>
+        <a href="/admin/posts/new" class="primary-button">Nytt innlegg</a>
+      </div>
+    </header>
+
+    <div class="content-list">
+      {posts.map(post => (
+        <article class="content-card">
+          <div class="content-info">
+            <h2>{post.data.title}</h2>
+            <p class="description">{post.data.description}</p>
+            <div class="meta">
+              <span class="date">{post.data.pubDate.toLocaleDateString('nb-NO')}</span>
+              <span class="author">{post.data.author}</span>
+              {post.data.kategori && (
+                <span class="category">{post.data.kategori}</span>
+              )}
+            </div>
+          </div>
+          <div class="actions">
+            <a href={`/admin/posts/${post.slug}/edit`} class="edit-button">Rediger</a>
+            <button class="delete-button" data-slug={post.slug}>Slett</button>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .page-header {
+    margin-bottom: 3rem;
+  }
+
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .page-header h1 {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+  }
+
+  .lead {
+    font-size: 1.25rem;
+    color: var(--gray-medium);
+  }
+
+  .primary-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    transition: transform 0.2s;
+  }
+
+  .primary-button:hover {
+    transform: translateY(-2px);
+  }
+
+  .content-list {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .content-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .content-info {
+    flex: 1;
+  }
+
+  .content-card h2 {
+    font-size: 1.25rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+  }
+
+  .description {
+    color: var(--gray-medium);
+    margin-bottom: 1rem;
+  }
+
+  .meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.875rem;
+    color: var(--gray-medium);
+  }
+
+  .category {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+  }
+
+  .actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .edit-button,
+  .delete-button {
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .edit-button {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+  }
+
+  .delete-button {
+    background: transparent;
+    color: #dc2626;
+    border: 1px solid currentColor;
+  }
+
+  .edit-button:hover,
+  .delete-button:hover {
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    .header-content {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .content-card {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .actions {
+      width: 100%;
+    }
+
+    .edit-button,
+    .delete-button {
+      flex: 1;
+      text-align: center;
+    }
+  }
+</style>
+
+<script>
+  // Handle delete functionality
+  document.querySelectorAll('.delete-button').forEach(button => {
+    button.addEventListener('click', async () => {
+      const slug = button.getAttribute('data-slug');
+      if (!slug) return;
+
+      if (confirm('Er du sikker på at du vil slette dette innlegget?')) {
+        try {
+          const response = await fetch(`/api/posts/${slug}`, {
+            method: 'DELETE'
+          });
+
+          if (response.ok) {
+            // Remove the article from the DOM
+            button.closest('article')?.remove();
+          } else {
+            throw new Error('Failed to delete post');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          alert('Det oppstod en feil ved sletting av innlegget. Vennligst prøv igjen.');
+        }
+      }
+    });
+  });
+</script> 
