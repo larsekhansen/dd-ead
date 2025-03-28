@@ -17,5 +17,5 @@
     "sharp": "npm:sharp@0.33.0",
     "tinymce": "npm:tinymce@6.8.0"
   },
-  "nodeModulesDir": "auto"
+  "nodeModulesDir": true
 }
