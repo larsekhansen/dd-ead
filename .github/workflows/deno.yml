@@ -1,0 +1,45 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      # Cache Deno dependencies
+      - name: Cache Deno dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/deno
+          key: ${{ runner.os }}-deno-${{ hashFiles('deno.json', 'deno.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-deno-
+
+      # Install dependencies and verify build
+      - name: Build check
+        run: |
+          deno cache npm:astro@5.0.0 npm:@astrojs/deno@5.0.1 npm:@astrojs/react@3.0.10
+          deno cache npm:@digdir/designsystemet-css@1.0.3 npm:@digdir/designsystemet-react@1.0.3 npm:@digdir/designsystemet-theme@1.0.3
+          deno cache npm:react@18.2.0 npm:react-dom@18.2.0 npm:sharp@0.33.0 npm:tinymce@6.8.0
+          deno task build
+
+      # Add deployment steps here, such as:
+      # - name: Deploy to Deno Deploy
+      #   uses: denoland/deployctl@v1
+      #   with:
+      #     project: your-project-name
+      #     entrypoint: "./dist/server/entry.mjs"

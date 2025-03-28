@@ -1,12 +1,21 @@
 {
   "tasks": {
-    "dev": "deno run --allow-sys --allow-ffi --allow-net --allow-read --allow-env --allow-write --allow-run npm:astro dev",
-    "sta": "deno run --allow-sys --allow-ffi --allow-net --allow-read --allow-env --allow-write --allow-run npm:astro preview",
-    "bld": "deno run --allow-sys --allow-ffi --allow-net --allow-read --allow-env --allow-write --allow-run npm:astro build"
+    "dev": "deno run --allow-net --allow-read --allow-env --allow-write --allow-run --allow-ffi npm:astro dev",
+    "start": "deno run --allow-net --allow-read --allow-env --allow-write --allow-run --allow-ffi npm:astro dev",
+    "build": "deno run --allow-net --allow-read --allow-env --allow-write --allow-run --allow-ffi npm:astro build",
+    "preview": "deno run --allow-net --allow-read --allow-env --allow-write --allow-run --allow-ffi ./dist/server/entry.mjs"
   },
   "imports": {
-    "astro": "npm:astro@latest",
-    "@astrojs/deno": "npm:@astrojs/deno@latest"
+    "astro": "npm:astro@5.0.0",
+    "@astrojs/deno": "npm:@astrojs/deno@5.0.1",
+    "@astrojs/react": "npm:@astrojs/react@3.0.10",
+    "@digdir/designsystemet-css": "npm:@digdir/designsystemet-css@1.0.3",
+    "@digdir/designsystemet-react": "npm:@digdir/designsystemet-react@1.0.3",
+    "@digdir/designsystemet-theme": "npm:@digdir/designsystemet-theme@1.0.3",
+    "react": "npm:react@18.2.0",
+    "react-dom": "npm:react-dom@18.2.0",
+    "sharp": "npm:sharp@0.33.0",
+    "tinymce": "npm:tinymce@6.8.0"
   },
   "nodeModulesDir": "auto"
 }
