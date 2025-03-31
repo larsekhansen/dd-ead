@@ -1,137 +1,21 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import MainLayout from '../layouts/MainLayout.astro';
+import Header from '../components/Header.astro';
 ---
 
-<Layout title="About Us | Your Site" description="Learn more about our company and mission">
-  <div class="about-container">
-    <header class="about-header">
-      <h1>About Us</h1>
-      <p class="subtitle">Learn about our mission and values</p>
-    </header>
-
-    <section class="content-section">
-      <h2>Our Mission</h2>
-      <p>
-        We are dedicated to providing valuable insights and knowledge to our community.
-        Through our blog, we aim to share expertise, foster discussions, and help our
-        readers stay informed about the latest developments in our industry.
-      </p>
-    </section>
-
-    <section class="content-section">
-      <h2>Our Values</h2>
-      <div class="values-grid">
-        <div class="value-card">
-          <h3>Quality</h3>
-          <p>We are committed to delivering high-quality, well-researched content that provides real value to our readers.</p>
-        </div>
-        <div class="value-card">
-          <h3>Integrity</h3>
-          <p>We maintain the highest standards of integrity in our content and business practices.</p>
-        </div>
-        <div class="value-card">
-          <h3>Innovation</h3>
-          <p>We constantly seek new ways to improve and bring fresh perspectives to our readers.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="content-section">
-      <h2>Get in Touch</h2>
-      <p>
-        We'd love to hear from you! Whether you have questions, feedback, or would like
-        to collaborate, don't hesitate to reach out.
-      </p>
-      <a href="mailto:contact@yoursite.com" class="contact-button">Contact Us</a>
-    </section>
-  </div>
-</Layout>
-
-<style>
-  .about-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-  }
-
-  .about-header {
-    text-align: center;
-    margin-bottom: 4rem;
-  }
-
-  .about-header h1 {
-    font-size: 3rem;
-    color: var(--text-color);
-    margin-bottom: 1rem;
-  }
-
-  .subtitle {
-    font-size: 1.25rem;
-    color: #6b7280;
-  }
-
-  .content-section {
-    margin-bottom: 4rem;
-  }
-
-  .content-section h2 {
-    font-size: 2rem;
-    color: var(--text-color);
-    margin-bottom: 1.5rem;
-  }
-
-  .content-section p {
-    color: #4b5563;
-    line-height: 1.8;
-  }
-
-  .values-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-
-  .value-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  }
-
-  .value-card h3 {
-    font-size: 1.25rem;
-    color: var(--text-color);
-    margin-bottom: 1rem;
-  }
-
-  .value-card p {
-    color: #6b7280;
-  }
-
-  .contact-button {
-    display: inline-block;
-    background: var(--primary-color);
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.375rem;
-    text-decoration: none;
-    font-weight: 500;
-    margin-top: 1.5rem;
-    transition: background-color 0.2s;
-  }
-
-  .contact-button:hover {
-    background: #1d4ed8;
-  }
-
-  @media (max-width: 768px) {
-    .about-header h1 {
-      font-size: 2.5rem;
-    }
-
-    .values-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style> 
+<MainLayout title="Om - Norge POC">
+  <Header title="Om prosjektet" />
+  
+  <section>
+    <p>
+      Dette er en enkel POC for å demonstrere integrasjon av følgende teknologistakk:
+    </p>
+    <ul>
+      <li>Astro - For statisk side generering og komponenter</li>
+      <li>Deno - Som runtime miljø</li>
+      <li>Enonic - For CMS og backend håndtering</li>
+      <li>Designsystemet - For UI komponenter</li>
+      <li>TypeScript - For type-sikker kode</li>
+    </ul>
+  </section>
+</MainLayout> 

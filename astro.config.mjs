@@ -1,23 +1,15 @@
-import { defineConfig } from "astro/config";
-import deno from "@astrojs/deno";
-import react from "@astrojs/react";
+import { defineConfig } from "npm:astro@3.6.4/config";
+import react from "npm:@astrojs/react@3.0.9";
 
+// https://astro.build/config
 export default defineConfig({
-  output: "server",
-  adapter: deno(),
   integrations: [react()],
-  site: "https://ki.digdir.no",
-  i18n: {
-    defaultLocale: "nb",
-    locales: ["nb", "en"],
-    fallback: {
-      en: "nb"
-    }
-  },
-  markdown: {
-    shikiConfig: {
-      theme: "github-light",
-      wrap: true
+  vite: {
+    optimizeDeps: {
+      exclude: ["@astrojs/react"]
+    },
+    ssr: {
+      noExternal: ["@digdir/designsystemet*"]
     }
   }
 });

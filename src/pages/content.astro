@@ -1,0 +1,49 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Header from '../components/Header.astro';
+import { fetchContentList } from '../utils/api';
+
+// This will be executed at build time
+// In a real application, you would fetch from your actual CMS
+// For demonstration, we'll mock a failed fetch since the CMS isn't set up yet
+const contentItems = []; // await fetchContentList('/');
+const error = "CMS connection not configured yet. This is just a demonstration of how it would work.";
+---
+
+<MainLayout title="Innhold - Norge POC">
+  <Header title="Innhold fra Enonic CMS" />
+  
+  <section>
+    {error && (
+      <div style="padding: 1rem; background-color: #fff8f8; border: 1px solid #ffdddd; border-radius: 4px; margin-bottom: 2rem;">
+        <p><strong>Info:</strong> {error}</p>
+        <p>When the Enonic CMS is properly configured, content would be displayed here.</p>
+      </div>
+    )}
+    
+    {contentItems.length > 0 ? (
+      <ul>
+        {contentItems.map((item) => (
+          <li>
+            <h3>{item.displayName}</h3>
+            <p>Path: {item.path}</p>
+            <p>Last Modified: {new Date(item.modifiedTime).toLocaleString()}</p>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p>No content items available.</p>
+    )}
+    
+    <h2>How this works</h2>
+    <p>
+      This page demonstrates how to fetch content from Enonic CMS using the API utilities.
+      In a real application, the <code>fetchContentList</code> function would make HTTP requests to your Enonic CMS API.
+    </p>
+    <pre style="background: #f4f4f4; padding: 1rem; border-radius: 4px; overflow: auto;">
+      {`// Example of API usage
+const content = await fetchContent('/your-content-path');
+const contentList = await fetchContentList('/your-parent-content-path');`}
+    </pre>
+  </section>
+</MainLayout> 
